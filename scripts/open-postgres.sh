@@ -1,2 +1,2 @@
 echo "opening reverse postgres port on 2302"
-ssh -R2302:localhost:5432 root@143.110.188.91 -i /root/.ssh/abi
+ssh -R2302:localhost:5432 sam@139.59.23.103 -i /root/.ssh/id_rsa_temp
