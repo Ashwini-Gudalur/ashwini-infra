@@ -22,12 +22,25 @@ download-mysql-lite-dump-to-local-from-jump:
 download-mysql-lite-dump-all-the-way: download-mysql-lite-dump download-mysql-lite-dump-to-local-from-jump
 
 restore-mysql-lite-dump:
-	-mysql -u root -p, -e 'drop database openmrs;'
-	mysql -u root -p, -e 'create database openmrs;'
-	mysql -u root -p, openmrs < backup/schema.sql
-	mysql -u root -p, openmrs < backup/metadata.sql
-	mysql -u root -p, openmrs < backup/tx-dump-1.sql
-	mysql -u root -p, openmrs < backup/tx-dump-2.sql
-	mysql -u root -p, openmrs < backup/tx-dump-3.sql
-	mysql -u root -p, openmrs < backup/tx-dump-4.sql
-	mysql -u root -p, openmrs < backup/tx-dump-5.sql
+	-mysql -u root -ppassword -e 'drop database openmrs;'
+	mysql -u root -ppassword -e 'create database openmrs;'
+	mysql -u root -ppassword openmrs < backup/schema.sql
+	mysql -u root -ppassword openmrs < backup/metadata.sql
+	mysql -u root -ppassword openmrs < backup/tx-dump-1.sql
+	mysql -u root -ppassword openmrs < backup/tx-dump-2.sql
+	mysql -u root -ppassword openmrs < backup/tx-dump-3.sql
+	mysql -u root -ppassword openmrs < backup/tx-dump-4.sql
+	mysql -u root -ppassword openmrs < backup/tx-dump-5.sql
+
+define _scp_vagrant
+	scp -P 2222 -i ~/.vagrant.d/insecure_private_key backup/$1 vagrant@127.0.0.1:/tmp/
+endef
+
+copy-mysql-lite-to-vagrant:
+	$(call _scp_vagrant,schema.sql)
+	$(call _scp_vagrant,metadata.sql)
+	$(call _scp_vagrant,tx-dump-1.sql)
+	$(call _scp_vagrant,tx-dump-2.sql)
+	$(call _scp_vagrant,tx-dump-3.sql)
+	$(call _scp_vagrant,tx-dump-4.sql)
+	$(call _scp_vagrant,tx-dump-5.sql)
