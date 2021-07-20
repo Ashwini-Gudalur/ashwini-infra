@@ -29,7 +29,7 @@ stop-openmrs:
 start-openmrs:
 	systemctl start openmrs
 
-restore-mysql-lite-dump:
+restore-mysql-lite-dump-only:
 	-mysql -u root -pP@ssw0rd -e 'drop database openmrs;'
 	mysql -u root -pP@ssw0rd -e 'create database openmrs;'
 	mysql -u root -pP@ssw0rd openmrs < /tmp/schema.sql
@@ -40,6 +40,8 @@ restore-mysql-lite-dump:
 	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-3.sql
 	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-4.sql
 	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-5.sql
+
+restore-mysql-lite-dump: stop-openmrs restore-mysql-lite-dump-only start-openmrs
 
 define _scp_vagrant
 	scp -P 2222 -i ~/.vagrant.d/insecure_private_key backup/$1 vagrant@127.0.0.1:/tmp/
