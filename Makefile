@@ -23,6 +23,12 @@ download-mysql-lite-dump-to-local-from-jump:
 
 download-mysql-lite-dump-all-the-way: download-mysql-lite-dump download-mysql-lite-dump-to-local-from-jump
 
+stop-openmrs:
+	systemctl stop openmrs
+
+start-openmrs:
+	systemctl start openmrs
+
 restore-mysql-lite-dump:
 	-mysql -u root -pP@ssw0rd -e 'drop database openmrs;'
 	mysql -u root -pP@ssw0rd -e 'create database openmrs;'
