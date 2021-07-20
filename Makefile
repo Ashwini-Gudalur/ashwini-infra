@@ -24,13 +24,13 @@ download-mysql-lite-dump-all-the-way: download-mysql-lite-dump download-mysql-li
 restore-mysql-lite-dump:
 	-mysql -u root -pP@ssw0rd -e 'drop database openmrs;'
 	mysql -u root -pP@ssw0rd -e 'create database openmrs;'
-	mysql -u root -pP@ssw0rd openmrs < backup/schema.sql
-	mysql -u root -pP@ssw0rd openmrs < backup/metadata.sql
-	mysql -u root -pP@ssw0rd openmrs < backup/tx-dump-1.sql
-	mysql -u root -pP@ssw0rd openmrs < backup/tx-dump-2.sql
-	mysql -u root -pP@ssw0rd openmrs < backup/tx-dump-3.sql
-	mysql -u root -pP@ssw0rd openmrs < backup/tx-dump-4.sql
-	mysql -u root -pP@ssw0rd openmrs < backup/tx-dump-5.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/schema.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/metadata.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-1.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-2.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-3.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-4.sql
+	mysql -u root -pP@ssw0rd openmrs < /tmp/tx-dump-5.sql
 
 define _scp_vagrant
 	scp -P 2222 -i ~/.vagrant.d/insecure_private_key backup/$1 vagrant@127.0.0.1:/tmp/
