@@ -56,3 +56,6 @@ copy-mysql-lite-to-vagrant:
 	$(call _scp_vagrant,tx-dump-3.sql)
 	$(call _scp_vagrant,tx-dump-4.sql)
 	$(call _scp_vagrant,tx-dump-5.sql)
+
+tunnel-debug-port-vagrant:
+	ssh -p 2222 -i ~/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -L 5005:localhost:5005
