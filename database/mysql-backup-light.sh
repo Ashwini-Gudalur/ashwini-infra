@@ -3,7 +3,7 @@ mysqldump -u root -ppassword openmrs address_hierarchy_address_to_entry_map addr
 
 # Note you cannot run the mysqldump multiple times as it drops table
 mysqldump -u root -ppassword openmrs person person_address person_attribute person_name --where="person_id in (select patient_id from patient_ids_to_export) or person_id in (select person.person_id from person join users u on u.person_id = person.person_id)" --single-transaction > /tmp/tx-dump-1.sql
-mysqldump -u root -ppassword openmrs patient patient_appointment patient_identifier visit bed_patient_assignment_map --where="patient_id in (select patient_id from patient_ids_to_export)"  > /tmp/tx-dump-2.sql
+mysqldump -u root -ppassword openmrs patient patient_appointment patient_identifier visit bed_patient_assignment_map --where="patient_id in (select patient_id from patient_ids_to_export)" --single-transaction > /tmp/tx-dump-2.sql
 mysqldump -u root -ppassword openmrs visit_attribute encounter --where="visit_id in (select visit_id from visit where patient_id in (select patient_id from patient_ids_to_export))" --single-transaction > /tmp/tx-dump-3.sql
 mysqldump -u root -ppassword openmrs encounter_provider obs orders --where="encounter_id in (select encounter_id from encounter where patient_id in (select patient_id from patient_ids_to_export))" --single-transaction > /tmp/tx-dump-4.sql
 mysqldump -u root -ppassword openmrs drug_order --where="order_id in (select drug_order.order_id from drug_order join orders o on drug_order.order_id = o.order_id where o.patient_id in (select patient_id from patient_ids_to_export))" --single-transaction > /tmp/tx-dump-5.sql
