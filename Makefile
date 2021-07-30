@@ -61,7 +61,7 @@ tunnel-debug-port-vagrant:
 	ssh -p 2222 -i ~/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -L 5005:localhost:5005
 
 stop-all:
-	systemctl stop openchs
+	systemctl stop openmrs
 	systemctl stop odoo
 	systemctl stop bahmni-lab
 	systemctl stop bahmni-reports
