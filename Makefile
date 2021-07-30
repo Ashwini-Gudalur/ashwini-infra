@@ -65,3 +65,5 @@ stop-all:
 	systemctl stop odoo
 	systemctl stop bahmni-lab
 	systemctl stop bahmni-reports
+	systemctl stop atomfeed-console
+	systemctl stop bahmni-erp-connect
