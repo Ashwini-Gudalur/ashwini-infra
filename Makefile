@@ -1,5 +1,5 @@
 backup-mysql-lite:
-	echo "TBD"
+	sh database/mysql-backup-light.sh
 
 download-mysql-lite-dump:
 	ssh dspace-auto "scp ashwini:/tmp/schema.sql /tmp/"
