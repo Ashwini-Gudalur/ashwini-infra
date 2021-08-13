@@ -69,3 +69,10 @@ stop-all-but-openmrs:
 	systemctl stop bahmni-reports
 	systemctl stop atomfeed-console
 	systemctl stop bahmni-erp-connect
+
+disable-all-but-openmrs:
+	systemctl disable odoo
+	systemctl disable bahmni-lab
+	systemctl disable bahmni-reports
+	systemctl disable atomfeed-console
+	systemctl disable bahmni-erp-connect
