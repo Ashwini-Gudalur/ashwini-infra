@@ -1,6 +1,9 @@
 backup-mysql-lite:
 	sh database/mysql-backup-light.sh
 
+backup-mysql:
+	mysqldump -u root -p openmrs > /tmp/mysql-full.sql
+
 download-mysql-lite-dump:
 	ssh dspace-auto "scp ashwini:/tmp/schema.sql /tmp/"
 	ssh dspace-auto "scp ashwini:/tmp/metadata.sql /tmp/"
