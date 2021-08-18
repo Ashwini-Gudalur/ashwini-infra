@@ -2,6 +2,7 @@ backup-mysql-lite:
 	sh database/mysql-backup-light.sh
 
 backup-mysql:
+	#GRANT ALL ON *.* TO 'openmrs-user'@'%' IDENTIFIED BY 'P@ssw0rd';
 	mysqldump -u root -p openmrs > /tmp/mysql-full.sql
 
 download-mysql-lite-dump:
