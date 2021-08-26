@@ -86,3 +86,7 @@ disable-all-but-openmrs:
 tunnel-https:
 	echo "opening reverse https port on 6040"
 	ssh -R6040:localhost:443 sam@139.59.23.103 -i /root/.ssh/id_rsa_temp
+
+tunnel-mysql:
+	echo "opening reverse mysql port on 2301"
+	ssh -R2301:localhost:3306 sam@139.59.23.103 -i /root/.ssh/id_rsa_temp
